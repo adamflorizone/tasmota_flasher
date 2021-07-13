@@ -3,7 +3,7 @@ The fastest way to flash Tasmota to ESP32 and ESP8266 with the current firmware 
 
 # How to use
 
-Everything is done in 1 step:
+Everything is done in 1 step after pluging in device:
 
 ```
 ./flash.sh 
