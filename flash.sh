@@ -1,13 +1,6 @@
 source ./tasmota_flasher.config
 source ${dir_config_dir}/tasmota_flasher.config
 
-echo 
-read_mac=`esptool read_mac`
-device_port=`echo "$read_mac" | grep "Serial port" | cut -d " " -f 3`
-device_type=`echo "$read_mac" | grep "Detecting chip type... " | cut -d " " -f 4`
-
-echo Detected $device_port $device_type on wifi $device_config_ssid1
-
 dir_tasmota32=${dir_temp}/tasmota32
 dir_tasmota=${dir_temp}/tasmota
 
@@ -21,14 +14,14 @@ mkdir -p ${dir_temp}
 # cat urls/ESP32_needed_files.txt | parallel --gnu "wget --directory-prefix=tmp/ESP32_needed_files {}"
 
 if [ -z ${USE_ESPTOOL_PIP+x} ]; then
-    [ -x "$(command -v pip3)" ] || sudo apt install python3-pip
+    [ -x "$(command -v pip3)" ] || (echo "We need to: sudo apt install python3-pip" && sudo apt install python3-pip)
     [ -x "$(command -v esptool)" ] || pip3 install esptool
 
     #git clone https://github.com/espressif/esptool.git --directory-prefix=${dir_esptool}/
     #pip install --user -e .
 else
-    [ -x "$(command -v svn)" ] || sudo apt install subversion
-    [ -x "$(command -v esptool)" ] ||sudo apt install esptool
+    [ -x "$(command -v svn)" ] || (echo "We need to: sudo apt install subversion" && sudo apt install subversion)
+    [ -x "$(command -v esptool)" ] || (echo "We need to: sudo apt install esptool" && sudo apt install esptool)
 fi
 
 if [ "$device_write_flash" = true ]; then
