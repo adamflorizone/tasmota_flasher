@@ -1,5 +1,4 @@
 source ./tasmota_flasher.config
-source ${dir_config_dir}/tasmota_flasher.config
 
 dir_tasmota_source=${dir_temp}/tasmota_${tasmota_build_tag}
 
@@ -19,4 +18,16 @@ dir_tasmota_source=${dir_temp}/tasmota_${tasmota_build_tag}
 # platformio run -e <variant> --target upload --upload-port <port>
 # https://docs.platformio.org/en/latest/core/userguide/cmd_run.html#options
 
+echo $device_port
+
+# rsync -rv custom_builds/RC522/* "$dir_tasmota_source/tasmota/"
+
+# append from $tasmota_build_custom_builds
+[ ! -f "$dir_tasmota_source/tasmota/user_config_override.h" ] || rm "$dir_tasmota_source/tasmota/user_config_override.h"
+for f in $tasmota_build_custom_builds; do (cat "custom_builds/${f}/user_config_override.h"; echo) >> "$dir_tasmota_source/tasmota/user_config_override.h"; done
+
+echo project-dir="$dir_tasmota_source"
+
 platformio run -e tasmota32 --target upload --upload-port "$device_port" --project-dir="$dir_tasmota_source"
+
+./program.sh

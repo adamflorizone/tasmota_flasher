@@ -1,0 +1,7 @@
+rule2 ON Tele-Wifi#Ssid DO Var8 %value% ENDON
+  ON IPAddress2 DO Var9 IP: %value% ENDON
+  ON StatusNET#IPAddress DO Var9 IP: %value% ENDON
+  ON ESP32#Temperature DO Var9 CPU: %value% ENDON
+  ON RC522#Type DO Backlog Var11 Type: %value%; Var5 %value% ENDON
+  ON RC522#Data DO Backlog Var12 Data: %value%; Var6 %value% ENDON
+  ON RC522#UID DO Backlog Var10 UID: %value%; publish sensor/%topic%/RC522 {"UID":"%value%,"Type":"%Var5%","Data":"%Var6%","timestamp":"%utctime%"} ENDON

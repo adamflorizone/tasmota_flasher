@@ -1,0 +1,9 @@
+rule3 ON System#Init DO DisplayText [x0y0R200:100] ENDON
+  ON Var8 DO Displaytext [l1c1f0s1p30]%Var8% ENDON
+  ON Var9 DO Displaytext [l2c1f0s1p30]%Var9% ENDON
+  ON Var10 DO Displaytext [l3c1f0s1p30]%Var10% ENDON
+  ON Var11 DO Displaytext [l4c1f0s1p30]%Var11% ENDON
+  ON Var12 DO Displaytext [l5c1f0s1p30]%Var12% ENDON
+  ON Var13 DO Displaytext [l6c1f0s1p30]%Var13% ENDON
+  ON Var14 DO Displaytext [l7c1f0s1p30]%Var14% ENDON
+  ON Var15 DO Displaytext [l8c1f0s1p30]%Var15% ENDON
