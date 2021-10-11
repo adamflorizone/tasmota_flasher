@@ -1,4 +1,4 @@
-source ./tasmota_flasher.config
+[ -n "$1" ] || source ./tasmota_flasher.config
 
 if [ "$device_write_config" = true ]; then
     Backlog="";
